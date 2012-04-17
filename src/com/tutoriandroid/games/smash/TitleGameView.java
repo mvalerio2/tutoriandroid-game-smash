@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 
 import com.gdacarv.engine.androidgame.GameView;
@@ -17,6 +18,8 @@ public class TitleGameView extends GameView {
 	
 	private Paint paintText;
 	private Context context;
+	
+	int highScore;
 
 	public TitleGameView(Context context) {
 		super(context);
@@ -43,11 +46,14 @@ public class TitleGameView extends GameView {
 		paintText = new Paint();
 		paintText.setColor(Color.WHITE);
 		paintText.setTextSize(25);
+		
+		highScore = PreferenceManager.getDefaultSharedPreferences(context).getInt("HIGH_SCORE", 0);
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		canvas.drawText(context.getString(R.string.iniciar_jogo), 50, getHeight()*0.6f, paintText);
+		canvas.drawText(context.getString(R.string.highscore)+" "+highScore, 40, getHeight()*0.8f, paintText);
 	}
 }

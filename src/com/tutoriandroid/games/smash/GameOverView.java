@@ -3,11 +3,14 @@ package com.tutoriandroid.games.smash;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.MediaPlayer;
+import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 
 import com.gdacarv.engine.androidgame.GameView;
@@ -17,7 +20,7 @@ public class GameOverView extends GameView {
 
 	private Paint paintText;
 	private Context context;
-	private int score;
+	private int score, highScore;
 
 	public GameOverView(Context context) {
 		super(context);
@@ -45,13 +48,22 @@ public class GameOverView extends GameView {
 		paintText.setColor(Color.WHITE);
 		paintText.setTextSize(25);
 		score = ((Activity) context).getIntent().getIntExtra("SCORE", 0);
+		
+		MediaPlayer musica = MediaPlayer.create(context, R.raw.gameover);
+		musica.start();
+		
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		highScore = prefs.getInt("HIGH_SCORE", 0);
+		if(score > highScore)
+			prefs.edit().putInt("HIGH_SCORE", score).commit();
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		canvas.drawText(context.getString(R.string.score) + " " + score, 50, getHeight()*0.6f, paintText);
-		canvas.drawText(context.getString(R.string.iniciar_jogo), 50, getHeight()*0.8f, paintText);
+		canvas.drawText(context.getString(R.string.iniciar_jogo), 50, getHeight()*0.82f, paintText);
+		canvas.drawText(context.getString(R.string.highscore)+" "+highScore, 50, getHeight()*0.68f, paintText);
 	}
 
 }

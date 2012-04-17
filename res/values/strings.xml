@@ -5,5 +5,6 @@
     <string name="iniciar_jogo">Toque na tela para iniciar o jogo</string>
     <string name="score">Score:</string>
     <string name="nextlevel_msg">Toque na tela para continuar o jogo</string>
+    <string name="highscore">High Score:</string>
 
 </resources>

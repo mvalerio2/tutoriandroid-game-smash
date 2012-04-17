@@ -11,6 +11,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.app.Activity;
@@ -33,6 +36,10 @@ public class MainGameView extends GameView {
 	float scoreX, scoreY;
 	
 	private int alivePinks;
+	
+	public MediaPlayer musica;
+	public SoundPool sound;
+	private int soundIdPinkHit, soundIdGoldHit, soundIdWin;
 
 	public MainGameView(Context context) {
 		super(context);
@@ -47,6 +54,7 @@ public class MainGameView extends GameView {
 				float x = event.getX(), y = event.getY();
 				for(Gold gold : golds)
 					if(x > gold.x && y > gold.y && x < gold.x + gold.width && y < gold.y + gold.height){
+						sound.play(soundIdGoldHit, 1f, 1f, 0, 0, 1f);
 						((Activity) context).finish();
 						Intent intent = new Intent(context, GameOverActivity.class);
 						intent.putExtra("SCORE", score);
@@ -54,12 +62,15 @@ public class MainGameView extends GameView {
 					}
 				for(Pink pink : pinks)
 					if(!pink.isDead() && x > pink.x && y > pink.y && x < pink.x + pink.width && y < pink.y + pink.height){
+						sound.play(soundIdPinkHit, 1f, 1f, 0, 0, 1f);
 						pink.kill();
 						int add;
 						score += add = (int) Math.max(100 - level*3 - (System.currentTimeMillis() - startTime)/500, 1);
 						alivePinks--;
-						if(alivePinks == 0)
+						if(alivePinks == 0){
 							nextLevelSprite.visible = true;
+							sound.play(soundIdWin, 1f, 1f, 0, 0, 1f);
+						}
 						Log.d("Score", "Valeu: " + add);
 					}
 			}else{
@@ -92,9 +103,17 @@ public class MainGameView extends GameView {
 		mSprites.add(nextLevelSprite = new Sprite(BitmapFactory.decodeResource(res, R.drawable.nextlevel)));
 		nextLevelSprite.x = getWidth()/2 - nextLevelSprite.width/2;
 		nextLevelSprite.y = (int) (getHeight()*0.2f);
-		nextLevelSprite.visible = false;
 		
 		newStage();
+		
+		musica = MediaPlayer.create(context, R.raw.background_music);
+		musica.setLooping(true);
+		musica.start();
+		
+		sound = new SoundPool(4, AudioManager.STREAM_MUSIC, 0);
+		soundIdPinkHit = sound.load(context, R.raw.pink_hit, 1);
+		soundIdGoldHit = sound.load(context, R.raw.gold_hit, 1);
+		soundIdWin = sound.load(context, R.raw.win, 1);
 	}
 	
 	@Override
@@ -160,4 +179,5 @@ public class MainGameView extends GameView {
 		mSprites.add(mSprites.size()-1, gold);
 		
 	}
+	
 }

@@ -21,10 +21,18 @@ public final class R {
         public static final int pinktiny=0x7f020007;
         public static final int title=0x7f020008;
     }
+    public static final class raw {
+        public static final int background_music=0x7f030000;
+        public static final int gameover=0x7f030001;
+        public static final int gold_hit=0x7f030002;
+        public static final int pink_hit=0x7f030003;
+        public static final int win=0x7f030004;
+    }
     public static final class string {
-        public static final int app_name=0x7f030000;
-        public static final int iniciar_jogo=0x7f030001;
-        public static final int nextlevel_msg=0x7f030003;
-        public static final int score=0x7f030002;
+        public static final int app_name=0x7f040000;
+        public static final int highscore=0x7f040004;
+        public static final int iniciar_jogo=0x7f040001;
+        public static final int nextlevel_msg=0x7f040003;
+        public static final int score=0x7f040002;
     }
 }

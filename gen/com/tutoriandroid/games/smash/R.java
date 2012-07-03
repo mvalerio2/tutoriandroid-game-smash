@@ -21,18 +21,26 @@ public final class R {
         public static final int pinktiny=0x7f020007;
         public static final int title=0x7f020008;
     }
+    public static final class id {
+        public static final int adView=0x7f060001;
+        public static final int titleGameView1=0x7f060000;
+    }
+    public static final class layout {
+        public static final int gameover_layout=0x7f030000;
+        public static final int title_layout=0x7f030001;
+    }
     public static final class raw {
-        public static final int background_music=0x7f030000;
-        public static final int gameover=0x7f030001;
-        public static final int gold_hit=0x7f030002;
-        public static final int pink_hit=0x7f030003;
-        public static final int win=0x7f030004;
+        public static final int background_music=0x7f040000;
+        public static final int gameover=0x7f040001;
+        public static final int gold_hit=0x7f040002;
+        public static final int pink_hit=0x7f040003;
+        public static final int win=0x7f040004;
     }
     public static final class string {
-        public static final int app_name=0x7f040000;
-        public static final int highscore=0x7f040004;
-        public static final int iniciar_jogo=0x7f040001;
-        public static final int nextlevel_msg=0x7f040003;
-        public static final int score=0x7f040002;
+        public static final int app_name=0x7f050000;
+        public static final int highscore=0x7f050004;
+        public static final int iniciar_jogo=0x7f050001;
+        public static final int nextlevel_msg=0x7f050003;
+        public static final int score=0x7f050002;
     }
 }

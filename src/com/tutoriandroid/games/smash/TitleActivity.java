@@ -8,6 +8,6 @@ public class TitleActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(new TitleGameView(this));
+        setContentView(R.layout.title_layout);
     }
 }

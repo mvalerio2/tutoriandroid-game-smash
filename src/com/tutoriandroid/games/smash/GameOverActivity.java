@@ -8,6 +8,6 @@ public class GameOverActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(new GameOverView(this));
+        setContentView(R.layout.gameover_layout);
     }
 }

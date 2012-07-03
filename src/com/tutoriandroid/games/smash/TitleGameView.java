@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.preference.PreferenceManager;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import com.gdacarv.engine.androidgame.GameView;
@@ -21,7 +22,7 @@ public class TitleGameView extends GameView {
 	
 	int highScore;
 
-	public TitleGameView(Context context) {
+	public TitleGameView(Context context, AttributeSet att) {
 		super(context);
 		this.context = context;
 	}

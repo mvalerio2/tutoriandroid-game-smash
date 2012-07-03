@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.media.MediaPlayer;
 import android.preference.PreferenceManager;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import com.gdacarv.engine.androidgame.GameView;
@@ -22,7 +23,7 @@ public class GameOverView extends GameView {
 	private Context context;
 	private int score, highScore;
 
-	public GameOverView(Context context) {
+	public GameOverView(Context context, AttributeSet att) {
 		super(context);
 		this.context = context;
 	}
